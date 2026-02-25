@@ -1,12 +1,25 @@
+@import "../../utils/mixins.scss";
+
 .cart-item-card {
   border: 1px solid $main-lightgrey;
   padding: 16px;
   font-family: 'Mont';
 
+  @include on-tablet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+  }
+
   &__first {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @include on-tablet {
+      gap: 24px;
+    }
 
     &__block {
       display: flex;
@@ -44,24 +57,36 @@
       margin: 0;
       font-weight: 600px;
       font-size: 14px;
+
+      @include on-tablet {
+        max-width: 176px;
+      }
     }
   }
 
   &__second {
     display: flex;
     justify-content: space-between;
-    margin-top: 16px;;
+    align-items: center;
+    margin-top: 16px;
+
+    @include on-tablet {
+      gap: 24px;
+    }
 
     &__price {
       margin: 0;
       font-weight: 800;
       font-size: 22px;
+      min-width: 75px;
+      display: flex;
+      justify-content: flex-end;
+
     }
 
     &__quantity-block {
       display: flex;
       align-items: center;
-      gap: 14px;
 
       &__button {
         height: 32px;

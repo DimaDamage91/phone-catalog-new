@@ -1,3 +1,5 @@
+@import "../../utils/mixins.scss";
+
 .favorites-empty {
     font-family: "Mont";
     padding: 0;
@@ -9,12 +11,17 @@
 
 .favorites-page {
   font-family: "Mont";
+  margin: 0 16px 0 16px;
+
+  @include on-tablet {
+    margin: 0 24px 0 24px;
+  }
 
   &__navi {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 24px 16px;
+    margin: 24px 0;
   }
 
   &__logo {
@@ -40,17 +47,22 @@
 
   &__title {
     padding: 0;
-    margin: 24px 16px 8px 16px;
+    margin: 24px 0 8px 0;
     color: $main-black;
     font-size: 32px;
     font-weight: 800;
+
+    @include on-tablet {
+      font-size: 48px;
+      margin: 40px 0 8px 0;
+    }
   }
 
   &__quantity {
-    margin-left: 16px;
     font-weight: 600;
     font-size: 14px;
     color: $main-grey;
+    margin: 0;
   }
 
   &__favorites {
@@ -59,6 +71,16 @@
     align-items: center;
     margin-top: 32px;
     gap: 40px;
-    margin-bottom: 56px;
+
+    @include on-tablet {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px 16px;
+    }
+
+    @include on-desktop {
+      margin-top: 40px;
+    }
   }
 }

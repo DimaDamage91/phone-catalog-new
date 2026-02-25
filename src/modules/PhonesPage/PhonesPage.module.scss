@@ -1,6 +1,12 @@
+@import "../../utils/mixins.scss";
+
 .phones-page {
   font-family: 'Mont';
   padding: 24px 16px;
+
+  @include on-tablet {
+    padding: 24px 24px;
+  }
 
   &__navi {
     display: flex;
@@ -19,18 +25,25 @@
   }
 
   &__page {
-    margin: 0;
     padding-top: 4px;
-
+    margin: 0;
     font-weight: 600;
     font-size: 12px;
-    line-height: 16px;
     letter-spacing: 0%;
     color: $main-grey;
+    display: flex;
+    align-items: center;
   }
 
   &__title {
-    margin-top: 24px;
+    margin: 24px 0 8px 0;
+    font-size: 32px;
+    font-weight: 800;
+
+    @include on-tablet {
+      margin: 40px 0 8px 0;
+      font-size: 48px;
+    }
   }
 
   &__models {
@@ -39,12 +52,21 @@
     line-height: 21px;
     letter-spacing: 0%;
     color: $main-grey;
-    margin-top: 8px;
+    margin: 0 0 32px 0;
+
+    @include on-tablet {
+      margin: 0 0 40px 0;
+    }
   }
 
   &__container {
     display: flex;
     justify-content: space-between;
+
+    @include on-tablet {
+      justify-content: flex-start;
+      gap: 16px;
+    }
   }
 
   &__select {
@@ -56,10 +78,19 @@
       letter-spacing: 0%;
       color: $main-grey;
       margin-bottom: 4px;
-      margin-top: 32px;
     }
 
-    &__field {
+    &__field-1 {
+      width: 136px;
+      height: 40px;
+      border-color: $icon-grey;
+
+      @include on-tablet {
+        width: 187px;
+      }
+    }
+
+    &__field-2 {
       width: 136px;
       height: 40px;
       border-color: $icon-grey;

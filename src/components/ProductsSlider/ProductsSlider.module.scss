@@ -1,13 +1,22 @@
+@import "../../utils/mixins.scss";
+
 .wrapper {
   margin-top: 56px;
 
   &__head {
-    margin: 0 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    &__title {
+      font-weight: 800;
+      font-size: 22px;
+      color: $main-black;
 
+      @include on-tablet {
+        font-size: 32px;
+      }
+    }
   }
 }
 
@@ -17,9 +26,6 @@
 }
 
 .swiper {
-  margin: 0 0 0 16px;
-  padding-bottom: 30px;
-
   &__slide {
     width: 212px;
   }

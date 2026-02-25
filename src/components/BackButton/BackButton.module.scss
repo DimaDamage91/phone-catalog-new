@@ -1,7 +1,12 @@
+@import "../../utils/mixins.scss";
+
 .back-button {
   margin-top: 24px;
-  margin-bottom: 16px;
   padding-left: 0;
+
+  @include on-tablet {
+    margin-top: 40px;
+  }
 
   &__block {
     display: flex;

@@ -1,11 +1,46 @@
+@import "../../utils/mixins.scss";
+
 .cart-page {
   font-family: 'Mont';
 
   margin: 0 16px;
 
-  &__items {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  @include on-tablet {
+    margin: 0 24px;
+  }
+
+  @include on-desktop {
+    margin: 0 32px;
+  }
+
+  &__title {
+    font-weight: 800;
+    color: $main-black;
+    font-size: 32px;
+    margin: 24px 0 32px 0;
+
+    @include on-tablet {
+      margin: 16px 0 32px 0;
+      font-size: 48px;
+    }
+  }
+
+  &__content {
+    @include on-desktop {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      @include on-desktop {
+        width: 100%;
+        margin-right: 16px;
+      }
+    }
   }
 }

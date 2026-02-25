@@ -25,7 +25,7 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
   return (
     <div className={styles['product__list']}>
       {products.map((product) => (
-        <ProductCard product={product} key={product.id} width='287px'/>
+        <ProductCard product={product} key={product.id} width='275px'/>
       ))}
     </div>
   )

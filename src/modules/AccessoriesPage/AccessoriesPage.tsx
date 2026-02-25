@@ -96,7 +96,7 @@ export const AccessoriesPage: React.FC = () => {
           <div className={styles["accessories-page__select"]}>
             <p className={styles["accessories-page__select__title"]}>Sort by</p>
             <select
-            className={styles["accessories-page__select__field"]}
+            className={styles["accessories-page__select__field-1"]}
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             >
@@ -109,7 +109,7 @@ export const AccessoriesPage: React.FC = () => {
           <div className={styles["accessories-page__select"]}>
             <p className={styles["accessories-page__select__title"]}>Items on page</p>
             <select
-              className={styles["accessories-page__select__field"]}
+              className={styles["accessories-page__select__field-2"]}
               value={visibleCount}
               onChange={(e) => setVisibleCount(Number(e.target.value))}
             >

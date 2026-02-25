@@ -12,13 +12,15 @@ export const CartPage = () => {
     <>
       <div className={styles["cart-page"]}>
         <BackButton />
-        <h1>Cart</h1>
-        <div className={styles["cart-page__items"]}>
-          {cartItems.map((item) => (
-            <CartItemCard product={item} key={item.product.productId}/>
-          ))}
+        <h1 className={styles["cart-page__title"]}>Cart</h1>
+        <div className={styles["cart-page__content"]}>
+          <div className={styles["cart-page__content__items"]}>
+            {cartItems.map((item) => (
+              <CartItemCard product={item} key={item.product.productId}/>
+            ))}
+          </div>
+          <CartSummary />
         </div>
-        <CartSummary />
       </div>
     </>
   )

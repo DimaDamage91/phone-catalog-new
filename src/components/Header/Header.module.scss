@@ -1,37 +1,179 @@
+@import "../../utils/mixins.scss";
+
 .header {
   border-bottom: 1px solid $main-lightgrey;
-  height: 48px;
 
   &__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 48px;
-  }
 
-  &__logo {
-    width: 64px;
-    height: 22px;
-    padding: 13px 16px;
-  }
+    @include on-desktop {
+      height: 65px;
+    }
 
-  &__menu-link {
-    display: flex;
-    align-items: center;
-    height: 48px;
-    cursor: pointer;
-  }
+    &__on-tablet-pc {
+      display: none;
 
-  &__menu {
-    width: 16px;
-    height: 16px;
-    padding: 13px 16px;
-  }
+      @include on-tablet {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+      }
 
-  &__menu-line {
-    height: 48px;
-    width: 1px;
-    background-color: $main-lightgrey;
+      &__main {
+        &__list {
+          @include on-tablet {
+            list-style: none;
+            display: flex;
+            margin-left: 16px;
+            padding: 0;
+            gap: 32px;
+          }
+
+          @include on-desktop {
+            gap: 64px;
+            margin-left: 24px;
+          }
+
+          &__link {
+            @include on-tablet {
+              text-decoration: none;
+              font-family: 'Mont';
+              font-weight: 800;
+              font-size: 12px;
+              line-height: 11px;
+              letter-spacing: 4%;
+              color: $main-grey;
+              position: relative;
+            }
+
+            &--active {
+
+              @include on-tablet {
+                &::after {
+                  content: "";
+                  width: 100%;
+                  position: absolute;
+                  left: 0;
+                  bottom: -17px;
+                  height: 2px;
+                  background-color: $main-black;
+                }
+              }
+
+              @include on-desktop {
+                &::after {
+                  bottom: -25.5px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__block {
+        &__button {
+          background-color: $main-white;
+          border: none;
+          border-left: 1px solid $main-lightgrey;
+          cursor: pointer;
+
+          &__badge {
+            @include on-tablet {
+              position: absolute;
+              top: 11px;
+              right: 5px;
+              min-width: 8px;
+              height: 14px;
+              padding: 0 3px;
+              border-radius: 50%;
+              background-color: #EB5757;
+              color: $main-white;
+              font-size: 10px;
+              font-weight: 800;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            @include on-desktop {
+              top: 20px;
+              right: 16px;
+            }
+          }
+
+          @include on-tablet {
+            height: 48px;
+            width: 48px;
+            position: relative;
+          }
+
+          @include on-desktop {
+            height: 65px;
+            width: 65px;
+          }
+
+          &__icon {
+            @include on-tablet {
+              height: 16px;
+              width: 16px;
+            }
+          }
+
+          &--active {
+            @include on-tablet {
+              &::after {
+                content: "";
+                width: 100%;
+                position: absolute;
+                left: 0;
+                bottom: -0.5px;
+                height: 2px;
+                background-color: $main-black;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__logo {
+      width: 64px;
+      height: 22px;
+      padding: 13px 16px;
+
+      @include on-desktop {
+        width: 80px;
+        height: 28px;
+        padding: 18.5px 24px;
+      }
+    }
+
+    &__menu-link {
+      display: flex;
+      align-items: center;
+      height: 48px;
+      cursor: pointer;
+
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &__menu {
+      width: 16px;
+      height: 16px;
+      padding: 13px 16px;
+    }
+
+    &__menu-line {
+      height: 48px;
+      width: 1px;
+      background-color: $main-lightgrey;
+    }
   }
 }
 

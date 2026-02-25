@@ -1,6 +1,15 @@
+@import "../../utils/mixins.scss";
+
 .product__list {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
+
+  @include on-tablet {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px 14px;
+    justify-content: center;
+  }
 }

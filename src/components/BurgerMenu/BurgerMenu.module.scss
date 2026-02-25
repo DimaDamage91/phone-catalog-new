@@ -1,3 +1,5 @@
+@import "../../utils/mixins.scss";
+
 .burgerMenu {
     position: fixed;
     top: 0;
@@ -13,7 +15,9 @@
     pointer-events: none;
     background-color: $main-white;
 
-    &Open {
+
+
+    &--Open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: all;
@@ -27,6 +31,7 @@
   &__head {
     height: 48px;
     border-bottom: 1px solid $main-lightgrey;
+
   }
 
   &__logo {

@@ -26,7 +26,7 @@ export const FavoritesPage = () => {
         <p className={styles["favorites-page__quantity"]}>{favorites.length} items</p>
         <div className={styles["favorites-page__favorites"]}>
           {favorites.map((favorite) => (
-          <ProductCard product={favorite}/>
+          <ProductCard product={favorite} width='274px'/>
           ))}
         </div>
       </div>

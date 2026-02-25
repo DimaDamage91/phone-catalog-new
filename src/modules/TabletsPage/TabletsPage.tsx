@@ -98,7 +98,7 @@ export const TabletsPage: React.FC = () => {
           <div className={styles["tablets-page__select"]}>
             <p className={styles["tablets-page__select__title"]}>Sort by</p>
             <select
-              className={styles["tablets-page__select__field"]}
+              className={styles["tablets-page__select__field-1"]}
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
             >
@@ -111,7 +111,7 @@ export const TabletsPage: React.FC = () => {
           <div className={styles["tablets-page__select"]}>
             <p className={styles["tablets-page__select__title"]}>Items on page</p>
             <select
-            className={styles["tablets-page__select__field"]}
+            className={styles["tablets-page__select__field-2"]}
             value={visibleCount}
             onChange={(e) => setVisibleCount(Number(e.target.value))}
             >

@@ -18,7 +18,9 @@ export const App = () => {
       <CartProvider>
         <Header />
         <main className="main-content">
-          <AppRouter />
+          <div className="container">
+            <AppRouter />
+          </div>
         </main>
         <Footer />
        </CartProvider>

@@ -11,7 +11,7 @@ export const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
   return (
     <aside className={classNames(
       styles.burgerMenu,
-      {[styles.burgerMenuOpen] : isOpen}
+      {[styles["burgerMenu--Open"]] : isOpen}
       )}
       id="menu"
     >
