@@ -1,21 +1,23 @@
-@import "../../utils/mixins.scss";
+@import "../../utils/mixins";
 
 .footer {
-  margin-top: 56px;
-  padding: 32px 16px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  margin-top: 56px;
+  padding: 32px 16px;
   border-top: 1px solid $main-lightgrey;
 
   @include on-tablet {
       display: flex;
       flex-direction: row;
+      gap: 0;
       align-items: center;
       justify-content: space-between;
-      padding: 32px 24px;
+
       margin-top: 64px;
-      gap: 0;
+      padding: 32px 24px;
     }
 
   &__content {
@@ -25,11 +27,11 @@
 
     @include on-tablet {
       display: flex;
-      flex-direction: row;
       flex: 1;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: row;
       gap: 32px;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
@@ -39,22 +41,24 @@
   }
 
   &__link {
-    text-decoration: none;
-    font-family: 'Mont';
-    line-height: 11px;
-    letter-spacing: 4%;
+    font-family: Mont;
     font-size: 12px;
     font-weight: 800;
+    line-height: 11px;
     color: $main-grey;
+    text-decoration: none;
+    letter-spacing: 4%;
   }
 
   &__menu {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    list-style: none;
-    padding: 0;
+
     margin: 0;
+    padding: 0;
+
+    list-style: none;
 
     @include on-tablet {
       display: flex;
@@ -69,26 +73,30 @@
   }
 
   &__button {
-    justify-content: center;
     display: flex;
+    justify-content: center;
 
     &-content {
+      cursor: pointer;
+
       display: flex;
+      gap: 16px;
       align-items: center;
       justify-content: center;
+
       border: none;
-      background: none;
-      gap: 16px;
-      cursor: pointer;
+
       text-decoration: none;
+
+      background: none;
     }
 
     &-text {
-      color: $main-grey;
-      font-family: 'Mont';
-      font-weight: 600;
+      font-family: Mont;
       font-size: 12px;
+      font-weight: 600;
       line-height: 100%;
+      color: $main-grey;
       letter-spacing: 0%;
     }
 

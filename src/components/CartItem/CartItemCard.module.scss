@@ -1,21 +1,21 @@
-@import "../../utils/mixins.scss";
+@import "../../utils/mixins";
 
 .cart-item-card {
-  border: 1px solid $main-lightgrey;
   padding: 16px;
-  font-family: 'Mont';
+  border: 1px solid $main-lightgrey;
+  font-family: Mont;
 
   @include on-tablet {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 24px;
   }
 
   &__first {
     display: flex;
-    align-items: center;
     gap: 16px;
+    align-items: center;
 
     @include on-tablet {
       gap: 24px;
@@ -26,26 +26,28 @@
       align-items: center;
 
       &__button {
-        padding: 0;
-        height: 16px;
         width: 16px;
+        height: 16px;
+        padding: 0;
         border: none;
+
         background-color: $main-white;
 
         &__close {
-          color: $icon-grey;
           cursor: pointer;
+          color: $icon-grey;
         }
       }
     }
 
     &__photo-block {
-      height: 80px;
-      width: 80px;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+
+      width: 80px;
+      height: 80px;
 
       &__photo {
         width: 66px;
@@ -55,8 +57,8 @@
 
     &__name {
       margin: 0;
-      font-weight: 600px;
       font-size: 14px;
+      font-weight: 600px;
 
       @include on-tablet {
         max-width: 176px;
@@ -66,8 +68,8 @@
 
   &__second {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     margin-top: 16px;
 
     @include on-tablet {
@@ -75,12 +77,14 @@
     }
 
     &__price {
-      margin: 0;
-      font-weight: 800;
-      font-size: 22px;
-      min-width: 75px;
       display: flex;
       justify-content: flex-end;
+
+      min-width: 75px;
+      margin: 0;
+
+      font-size: 22px;
+      font-weight: 800;
 
     }
 
@@ -89,21 +93,21 @@
       align-items: center;
 
       &__button {
-        height: 32px;
         width: 32px;
-        background-color: $main-white;
+        height: 32px;
         border: 1px solid $icon-grey;
+        background-color: $main-white;
 
         &--disabled {
-          height: 32px;
           width: 32px;
-          background-color: $main-white;
+          height: 32px;
           border: 1px solid $main-lightgrey;
+          background-color: $main-white;
         }
 
         &__minus {
-          color: $main-black;
           cursor: pointer;
+          color: $main-black;
 
           &--disabled {
             color: $icon-grey;
@@ -111,14 +115,14 @@
         }
 
         &__plus {
-          color: $main-black;
           cursor: pointer;
+          color: $main-black;
         }
       }
 
       &__quantity {
-        margin: 0;
         min-width: 22px;
+        margin: 0;
         text-align: center;
       }
     }

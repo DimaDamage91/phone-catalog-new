@@ -11,15 +11,16 @@ interface ProductCardProps {
   product: Product;
   width?: string;
   hideFullPrice?: boolean;
+  buttonWidth?: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212px", hideFullPrice }) => {
-  const { cartItems, addToCart } = useContext(CartContext);
+export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212px", hideFullPrice, buttonWidth = "160px" }) => {
+  const { cartItems, toggleCart } = useContext(CartContext);
 
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
 
   function handleAddClick() {
-    addToCart(product);
+    toggleCart(product);
   }
 
   function handleLikeClick() {
@@ -93,8 +94,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212p
             styles["productCard__buttons--add"],
             isInCart && styles["productCard__buttons--add--selected"]
             )}
+            style={{ width: buttonWidth || '100px'}}
         >
-          {isInCart ? 'Added to cart' : 'Add to cart'}
+          {isInCart ? 'Added' : 'Add to cart'}
         </button>
         <button
           onClick={handleLikeClick}

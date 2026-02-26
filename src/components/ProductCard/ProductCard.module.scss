@@ -2,7 +2,7 @@
   border: 1px solid $main-lightgrey;
 
   &:hover {
-    box-shadow: 0px 2px 15px 0px #0000001A;
+    box-shadow: 0 2px 15px 0 #0000001A;
   }
 
   &__content {
@@ -15,8 +15,8 @@
   }
 
   &__image {
-    height: 130px;
     width: 110px;
+    height: 130px;
   }
 
   &__nameLink {
@@ -28,14 +28,15 @@
   }
 
   &__name {
-    font-family: 'Mont';
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0%;
-    color: $main-black;
-    padding-top: 24px;
     margin: 0;
+    padding-top: 24px;
+
+    font-family: Mont;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: $main-black;
+    letter-spacing: 0%;
   }
 
   &__priceblock {
@@ -43,27 +44,28 @@
   }
 
   &__price {
-    font-family: 'Mont';
-    font-weight: 800;
-    font-size: 22px;
-    line-height: 140%;
-    letter-spacing: 0%;
-    color: $main-black;
+    margin: 0;
     padding-top: 8px;
     padding-bottom: 8px;
-    margin: 0;
+
+    font-family: Mont;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 140%;
+    color: $main-black;
+    letter-spacing: 0%;
 
     &--fullprice {
       margin-left: 8px;
+      font-weight: 600;
       color: $main-grey;
       text-decoration: line-through;
-      font-weight: 600;
     }
   }
 
   &__line {
-    padding-bottom: 16px;
     margin: 0;
+    padding-bottom: 16px;
     border-top: 1px solid $main-lightgrey;
   }
 
@@ -74,33 +76,35 @@
 
 
     &__list {
-      list-style: none;
-      padding: 0;
       margin: 0;
+      padding: 0;
+      list-style: none;
 
       &--name {
-        font-family: 'Mont';
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 100%;
-        letter-spacing: 0%;
-        color: $main-grey;
         display: flex;
         flex-direction: column;
         gap: 8px;
+
+        font-family: Mont;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 100%;
+        color: $main-grey;
+        letter-spacing: 0%;
       }
 
       &--value {
-        font-family: 'Mont';
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 100%;
-        letter-spacing: 0%;
-        text-align: right;
-        color: $main-black;
         display: flex;
         flex-direction: column;
         gap: 8px;
+
+        font-family: 'Mont';
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 100%;
+        color: $main-black;
+        text-align: right;
+        letter-spacing: 0%;
       }
     }
   }
@@ -112,41 +116,48 @@
 
 
     &--add {
-      width: 100px;
-      height: 40px;
       cursor: pointer;
+
+      width: 160px;
+      height: 40px;
       padding: 0;
-      border-radius: 0;
       border: none;
-      color: $main-white;
-      background-color: $main-black;
+      border-radius: 0;
+
       font-family: 'Mont';
-      font-weight: 500;
       font-size: 14px;
+      font-weight: 500;
       line-height: 21px;
-      letter-spacing: 0%;
+      color: $main-white;
       text-align: center;
+      letter-spacing: 0%;
+
+      background-color: $main-black;
+
       transition: font-size $transition-time ease, box-shadow $transition-time ease;
 
       &:hover {
-        box-shadow: 0px 3px 13px 0px #17203166;
         font-size: 15px;
+        box-shadow: 0 3px 13px 0 #17203166;
       }
 
       &--selected {
+        border: 1px $main-lightgrey solid;
         color: #27AE60;
         background-color: $main-white;
-        border: 1px $main-lightgrey solid;
       }
     }
 
     &--like {
+      cursor: pointer;
+
       width: 40px;
       height: 40px;
-      border-radius: 0;
       border: 1px solid $icon-grey;
+      border-radius: 0;
+
       background-color: $main-white;
-      cursor: pointer;
+
       transition: border $transition-time;
 
       &:hover {
@@ -159,8 +170,8 @@
     }
 
     &__logo {
-      height: 16px;
       width: 16px;
+      height: 16px;
       color: $main-black;
     }
   }

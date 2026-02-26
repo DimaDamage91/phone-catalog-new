@@ -7,7 +7,9 @@ interface CartContextType {
   addToCart: (product: Product) => void,
   removeFromCart: (productId: string) => void,
   increment: (productId: string) => void,
-  decrement: (productId: string) => void
+  decrement: (productId: string) => void,
+  clearCart: () => void,
+  toggleCart: (product: Product) => void
 };
 
 export const CartContext = React.createContext<CartContextType>({
@@ -15,7 +17,9 @@ export const CartContext = React.createContext<CartContextType>({
   addToCart: () => {},
   removeFromCart: () => {},
   increment: () => {},
-  decrement: () => {}
+  decrement: () => {},
+  clearCart: () => {},
+  toggleCart: () => {},
 });
 
 type Props = {
@@ -88,13 +92,31 @@ export const CartProvider: React.FC<Props> = ({ children }) => {
     );
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  }
+
+  const toggleCart = (product: Product) => {
+      setCartItems(prev => {
+        const newCart = prev.some(item => item.product.productId === product.productId)
+
+        if (newCart) {
+          return prev.filter(item => item.product.productId !== product.productId);
+        }
+
+        return [...prev, { product: product, quantity: 1 }]
+      })
+    }
+
 
   const value = {
     cartItems,
     addToCart,
     removeFromCart,
     increment,
-    decrement
+    decrement,
+    clearCart,
+    toggleCart
   }
 
   return (

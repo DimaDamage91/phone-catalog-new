@@ -1,4 +1,4 @@
-@import "../../utils/mixins.scss";
+@import "../../utils/mixins";
 
 .back-button {
   margin-top: 24px;
@@ -9,12 +9,15 @@
   }
 
   &__block {
-    display: flex;
-    padding: 0;
-    align-items: center;
-    background-color: $main-white;
-    border: none;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0;
+    border: none;
+
+    background-color: $main-white;
   }
 
   &__img {
@@ -24,9 +27,10 @@
 
   &__name {
     margin: 0;
-    font-family: 'Mont';
-    font-weight: 700;
+
+    font-family: Mont;
     font-size: 12px;
+    font-weight: 700;
     color: $main-grey;
   }
 

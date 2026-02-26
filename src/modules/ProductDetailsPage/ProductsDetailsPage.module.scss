@@ -1,9 +1,9 @@
-@import "../../utils/mixins.scss";
+@import "../../utils/mixins";
 
 .product-details-page {
-  font-family: 'Mont';
-  padding: 0 16px;
   margin-top: 24px;
+  padding: 0 16px;
+  font-family: Mont;
 
   @include on-tablet {
     padding: 0 24px;
@@ -15,29 +15,29 @@
 
   &__navi {
     display: flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
   }
 
   &__logo {
-      height: 16px;
       width: 16px;
+      height: 16px;
   }
 
   &__arrow {
-      height: 10px;
       width: 6px;
+      height: 10px;
   }
 
   &__page {
     margin: 0;
     padding-top: 4px;
 
-    font-weight: 600;
     font-size: 12px;
+    font-weight: 600;
     line-height: 16px;
-    letter-spacing: 0%;
     color: $main-grey;
+    letter-spacing: 0%;
   }
 
   &__block {
@@ -82,29 +82,30 @@
     }
 
     &__photo-block {
-      margin: 32px auto 0;
       display: flex;
       justify-content: center;
-      height: 287px;
+
       width: 287px;
+      height: 287px;
+      margin: 32px auto 0;
 
       @include on-tablet {
         margin: 40px 16px 0;
       }
 
       @include on-desktop {
-        height: 464px;
         width: 464px;
+        height: 464px;
         margin: 40px 64px 0 16px;
       }
 
       &__photo {
-        height: 274px;
         width: 274px;
+        height: 274px;
 
         @include on-desktop {
-          height: 442px;
           width: 442px;
+          height: 442px;
         }
       }
     }
@@ -120,13 +121,19 @@
       }
 
       &__button {
-        padding: 0;
-        height: 51px;
-        width: 49px;
-        background-color: $main-white;
-        border: 1px solid $main-lightgrey;
-        outline: none;
         cursor: pointer;
+
+        width: 49px;
+        height: 51px;
+        padding: 0;
+        border: 1px solid $main-lightgrey;
+
+        background-color: $main-white;
+        outline: none;
+
+        &:hover {
+          box-shadow: 0px 2px 16px 0px #0000001A;
+        }
 
         &--active {
           border: 1px solid $main-black;
@@ -134,51 +141,55 @@
         }
 
         @include on-tablet {
-          height: 35px;
           width: 35px;
+          height: 35px;
         }
 
         @include on-desktop {
-          height: 80px;
-          width: 80px
+          width: 80px;
+          height: 80px
         }
       }
 
       &__photo {
-        height: 42px;
         width: 40px;
+        height: 42px;
 
         @include on-tablet {
-          height: 28px;
           width: 28px;
+          height: 28px;
         }
 
         @include on-desktop {
-          height: 66px;
           width: 66px;
+          height: 66px;
         }
       }
     }
 
     &__colors {
+    margin-top: 40px;
+
     font-size: 12px;
     font-weight: 600;
     line-height: 100%;
-    letter-spacing: 0%;
     color: $main-grey;
-    margin-top: 40px;
+    letter-spacing: 0%;
 
     @include on-tablet{
       margin-top: 40px;
     }
 
     &::after {
-      display: block;
       content: "";
+
+      display: block;
+
       max-width: 100%;
       height: 1px;
-      background-color: $main-lightgrey;
       margin-top: 24px;
+
+      background-color: $main-lightgrey;
 
       @include on-tablet {
         max-width: 320px;
@@ -190,7 +201,7 @@
       justify-content: space-between;
 
       &__name {
-        margin:0 0 8px 0;
+        margin:0 0 8px;
       }
      }
 
@@ -199,11 +210,12 @@
       gap: 8px;
 
       &__block {
-        height: 32px;
+        cursor: pointer;
+
         width: 32px;
+        height: 32px;
         border: 1px solid $main-lightgrey;
         border-radius: 50%;
-        cursor: pointer;
 
         &--active {
           border: 1px solid $main-black;
@@ -215,23 +227,27 @@
     &__capacity {
       &::after {
         content: '';
+
         display: block;
-        height: 1px;
+
         max-width: 100%;
-        background-color: $main-lightgrey;
+        height: 1px;
         margin-top: 24px;
+
+        background-color: $main-lightgrey;
 
         @include on-tablet {
           max-width: 320px;
         }
       }
       &__title {
+        margin: 24px 0 8px;
+
         font-size: 12px;
         font-weight: 600;
         line-height: 100%;
-        letter-spacing: 0%;
         color: $main-grey;
-        margin: 24px 0 8px 0;
+        letter-spacing: 0%;
       }
 
       &__block {
@@ -244,15 +260,15 @@
 
 
         &__option {
-          background-color: $main-white;
-          border: 1px solid $icon-grey;
           cursor: pointer;
+          border: 1px solid $icon-grey;
+          background-color: $main-white;
 
           &__title {
-            color: $main-black;
             font-size: 14px;
             font-weight: 500;
             line-height: 21px;
+            color: $main-black;
             letter-spacing: 0%;
           }
 
@@ -270,20 +286,20 @@
     &__cart-price {
       &__price {
         display: flex;
-        align-items: center;
         gap: 8px;
+        align-items: center;
 
         &--discount {
-          color: $main-black;
-          font-weight: 800;
           font-size: 32px;
+          font-weight: 800;
+          color: $main-black;
 
         }
 
         &--regular {
-          color: $main-grey;
-          font-weight: 500;
           font-size: 22px;
+          font-weight: 500;
+          color: $main-grey;
           text-decoration: line-through;
         }
       }
@@ -297,50 +313,57 @@
         }
 
         &__buttons {
-          padding-top: 8px;
           width: 100%;
+          padding-top: 8px;
 
           &--add {
+            cursor: pointer;
+
             width: 231px;
             height: 48px;
-            cursor: pointer;
             padding: 0;
-            border-radius: 0;
             border: none;
-            color: $main-white;
-            background-color: $main-black;
-            font-family: 'Mont';
-            font-weight: 500;
+            border-radius: 0;
+
+            font-family: Mont;
             font-size: 14px;
+            font-weight: 500;
             line-height: 21px;
-            letter-spacing: 0%;
+            color: $main-white;
             text-align: center;
+            letter-spacing: 0%;
+
+            background-color: $main-black;
+
             transition: font-size $transition-time ease, box-shadow $transition-time ease;
 
             @include on-tablet {
-              margin-right: 8px;
               width: 264px;
+              margin-right: 8px;
             }
 
             &:hover {
-              box-shadow: 0px 3px 13px 0px #17203166;
               font-size: 15px;
+              box-shadow: 0 3px 13px 0 #17203166;
             }
 
             &--selected {
+              border: 1px $main-lightgrey solid;
               color: #27AE60;
               background-color: $main-white;
-              border: 1px $main-lightgrey solid;
             }
           }
 
           &--like {
+            cursor: pointer;
+
             width: 48px;
             height: 48px;
-            border-radius: 0;
             border: 1px solid $icon-grey;
+            border-radius: 0;
+
             background-color: $main-white;
-            cursor: pointer;
+
             transition: border $transition-time;
 
             &:hover {
@@ -353,8 +376,8 @@
           }
 
           &__logo {
-            height: 16px;
             width: 16px;
+            height: 16px;
             color: $main-black;
           }
         }
@@ -362,22 +385,22 @@
     }
 
     &__specs {
-      margin-top: 24px;
       display: flex;
       justify-content: space-between;
+      margin-top: 24px;
 
       @include on-tablet {
         max-width: 320px;
       }
 
       &__name {
-        list-style-type: none;
-        text-align: left;
         padding: 0;
 
-        font-weight: 600;
         font-size: 12px;
+        font-weight: 600;
         color: $main-grey;
+        text-align: left;
+        list-style-type: none;
 
         li {
           margin-top: 8px;
@@ -385,13 +408,13 @@
       }
 
       &__value {
-        list-style-type: none;
-        text-align: right;
         padding: 0;
 
-        font-weight: 600;
         font-size: 12px;
+        font-weight: 600;
         color: $main-black;
+        text-align: right;
+        list-style-type: none;
 
         li {
           margin-top: 8px;
@@ -406,16 +429,19 @@
 
       &__title {
         margin-top: 56px;
-        font-weight: 700;
         font-size: 20px;
+        font-weight: 700;
 
         &::after {
           content: '';
+
           display: block;
-          height: 1px;
+
           width: 100%;
-          background-color: $main-lightgrey;
+          height: 1px;
           margin-top: 16px;
+
+          background-color: $main-lightgrey;
         }
 
         @include on-tablet {
@@ -452,16 +478,19 @@
 
       &__title {
         margin-top: 56px;
-        font-weight: 700;
         font-size: 20px;
+        font-weight: 700;
 
         &::after {
           content: '';
+
           display: block;
-          height: 1px;
+
           width: 100%;
-          background-color: $main-lightgrey;
+          height: 1px;
           margin-top: 16px;
+
+          background-color: $main-lightgrey;
         }
 
         @include on-tablet {
@@ -475,13 +504,13 @@
         margin-top: 22px;
 
         &__list-l {
-          list-style-type: none;
           padding: 0;
-          text-align: left;
 
-          font-weight: 500;
           font-size: 14px;
+          font-weight: 500;
           color: $main-grey;
+          text-align: left;
+          list-style-type: none;
 
           li {
             margin-top: 8px;
@@ -489,14 +518,13 @@
         }
 
         &__list-r {
-          list-style-type: none;
-          text-align: right;
           padding: 0;
 
-
-          font-weight: 500;
           font-size: 14px;
+          font-weight: 500;
           color: $main-black;
+          text-align: right;
+          list-style-type: none;
 
           li {
             margin-top: 8px;
