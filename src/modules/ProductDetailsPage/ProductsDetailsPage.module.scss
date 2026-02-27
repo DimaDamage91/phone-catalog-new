@@ -102,6 +102,7 @@
       &__photo {
         width: 274px;
         height: 274px;
+        object-fit: contain;
 
         @include on-desktop {
           width: 442px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Product } from "../shared/types/Product";
 import { Loader } from "../../components/Loader";
@@ -9,6 +9,8 @@ import { fetchUrl } from "../shared/FetchFunction/FetchFunction";
 import classNames from "classnames";
 import { ProductsSlider } from "../../components/ProductsSlider";
 import { BackButton } from "../../components/BackButton";
+import { CartContext } from "../../context/CartContext";
+import { FavoritesContext } from "../../context/FavoritesContext";
 
 
 export const ProductDetailsPage: React.FC = () => {
@@ -25,6 +27,8 @@ const [sameProducts, setSameProducts] = useState<Product[]>([]);
 const [isSelected, setIsSelected] = useState(false);
 const [isLiked, setIsLiked] = useState(false);
 
+const { toggleCart, cartItems } = useContext(CartContext);
+const { toggleFavorite, favorites } = useContext(FavoritesContext);
 
 const apis = [PHONE_API, ACCESSORIES_API, TABLETS_API];
 
@@ -37,8 +41,6 @@ useEffect(() => {
     try {
     for (const api of apis) {
       const data = await fetchUrl(api);
-      const currentProduct = data.find((p: Product) => String(p.id) === productId);
-
       const normalized = data.map((product: any) => ({
         ...product,
         image: product.images?.[0] || product.image,
@@ -46,10 +48,11 @@ useEffect(() => {
         fullPrice: product.priceRegular || product.fullPrice,
         productId: product.id,
       }));
+      const currentProduct = normalized.find((p: Product) => String(p.productId) === productId);
 
       if (currentProduct) {
         const spaceId = currentProduct.namespaceId;
-        const variants = data.filter((p: Product) => p.namespaceId === spaceId);
+        const variants = normalized.filter((p: Product) => p.namespaceId === spaceId);
 
         setSameProducts(normalized)
         setProduct(currentProduct);
@@ -67,12 +70,39 @@ useEffect(() => {
   fetchCurrentProduct();
 }, [productId])
 
+useEffect(() => {
+  if (!product) {
+    return;
+  }
+
+  const inCart = cartItems.some(
+    item => item.product.productId === product.productId
+  );
+
+  const infavorites = favorites.some(
+    item => item.productId === product.productId
+  );
+
+  setIsSelected(inCart);
+  setIsLiked(infavorites);
+}, [product, cartItems, favorites])
+
 
 function handleAddClick() {
+    if (!product) {
+      return;
+    }
+
+    toggleCart(product);
     setIsSelected(!isSelected);
 }
 
   function handleLikeClick() {
+    if (!product) {
+      return;
+    }
+
+    toggleFavorite(product)
     setIsLiked(!isLiked);
 }
 
@@ -141,7 +171,7 @@ const availableCapacity = Array.from(
                         key={color}
                         type="button"
                         aria-label={`Select color ${color}`}
-                        onClick={() => navigate(`/product/${variantForColor!.id}`, {replace: true})}
+                        onClick={() => navigate(`/product/${variantForColor!.productId}`, {replace: true})}
                         className={`
                           ${styles["product-details-page__content__colors__available__block"]}
                           ${isActive
@@ -161,7 +191,9 @@ const availableCapacity = Array.from(
                     {availableCapacity.map((capacity) => {
                       const isActive = product.capacity === capacity;
 
-                      const variantForCapacity= variants.find(v => v.capacity === capacity);
+                      const variantForCapacity= variants.find(
+                        v => v.capacity === capacity && v.color === product.color
+                      );
 
                       return (
                         <button
@@ -172,7 +204,7 @@ const availableCapacity = Array.from(
                               : ''
                             }
                           `}
-                          onClick={() => navigate(`/product/${variantForCapacity?.id}`, {replace: true})}
+                          onClick={() => navigate(`/product/${variantForCapacity?.productId}`, {replace: true})}
                         >
                           <p className={styles["product-details-page__content__capacity__block__option__title"]}>{capacity}</p>
                         </button>

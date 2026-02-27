@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../AccessoriesPage/AccessoriesPage.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import { Product } from "../shared/types/Product";
 import { ProductsList } from "../../components/ProductsList";
 import { Loader } from "../../components/Loader";
@@ -13,10 +13,18 @@ export const AccessoriesPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const step = 14;
-  const [visibleCount, setVisibleCount] = useState<number>(step);
-  const [sortBy, setSortBy] = useState<string>("alphabetically");
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [visibleCount, setVisibleCount] = useState<number>(
+    Number(searchParams.get("perPage")) || step
+  );
+  const [sortBy, setSortBy] = useState<string>(
+    searchParams.get("sort") || "alphabetically"
+  );
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(searchParams.get("page")) || 1
+  );
+
   const totalPages = Math.ceil(accessories.length / visibleCount);
 
 
@@ -45,6 +53,24 @@ export const AccessoriesPage: React.FC = () => {
 
     fetchAccessories();
   }, []);
+
+  useEffect(() => {
+    const params: any = {};
+
+    if (visibleCount) {
+      params.perPage = visibleCount
+    }
+
+    if (sortBy) {
+      params.sort = sortBy
+    }
+
+    if (currentPage) {
+      params.page = currentPage
+    }
+
+    setSearchParams(params);
+  }, [sortBy, currentPage, visibleCount])
 
   const sortedAccessories = [...accessories].sort((a, b) => {
     if (sortBy === "alphabetically") return a.name.localeCompare(b.name);
@@ -98,7 +124,10 @@ export const AccessoriesPage: React.FC = () => {
             <select
             className={styles["accessories-page__select__field-1"]}
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => {
+              setSortBy(e.target.value)
+              setCurrentPage(1)
+            }}
             >
             <option value="alphabetically">Alphabetically</option>
             <option value="cheapest">Cheap</option>
@@ -111,7 +140,10 @@ export const AccessoriesPage: React.FC = () => {
             <select
               className={styles["accessories-page__select__field-2"]}
               value={visibleCount}
-              onChange={(e) => setVisibleCount(Number(e.target.value))}
+              onChange={(e) => {
+                setVisibleCount(Number(e.target.value))
+                setCurrentPage(1)
+              }}
             >
             <option value={14}>14</option>
             <option value={18}>18</option>

@@ -6,17 +6,24 @@ import { NavLink } from "react-router-dom";
 import { Product } from "../shared/types/Product";
 import { PHONE_API } from "../shared/constants/constants.js";
 import { fetchUrl } from "../shared/FetchFunction/FetchFunction.js";
+import { useSearchParams } from "react-router-dom";
 
 export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
   const step = 14;
-  const [visibleCount, setVisibleCount] = useState<number>(step);
-  const [sortBy, setSortBy] = useState<string>('newest');
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState<string>(
+    searchParams.get("sort") || 'newest'
+  );
+  const [visibleCount, setVisibleCount] = useState<number>(
+    Number(searchParams.get("perPage")) || step
+  );
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(searchParams.get("page")) || 1
+  );
 
   const totalPages = Math.ceil(phones.length / visibleCount);
 
@@ -45,6 +52,24 @@ export const PhonesPage: React.FC = () => {
 
     fetchPhones();
   }, []);
+
+  useEffect(() => {
+    const params: any = {};
+
+    if (sortBy) {
+      params.sort = sortBy;
+    }
+
+    if (visibleCount) {
+      params.perPage = visibleCount;
+    }
+
+    if (currentPage !== 1) {
+      params.page = currentPage;
+    }
+
+    setSearchParams(params);
+  }, [sortBy, visibleCount, currentPage]);
 
 
   const sortedPhones = [...phones].sort((a, b) => {
@@ -98,7 +123,10 @@ export const PhonesPage: React.FC = () => {
             <select
             className={styles["phones-page__select__field-1"]}
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+              setCurrentPage(1);
+            }}
             >
             <option value="newest">Newest</option>
             <option value="cheapest">Cheap</option>
@@ -111,7 +139,10 @@ export const PhonesPage: React.FC = () => {
               <select
                 className={styles["phones-page__select__field-2"]}
                 value={visibleCount}
-                onChange={(e) => setVisibleCount(Number(e.target.value))}
+                onChange={(e) => {
+                  setVisibleCount(Number(e.target.value));
+                  setCurrentPage(1);
+                }}
               >
               <option value={14}>14</option>
               <option value={18}>18</option>

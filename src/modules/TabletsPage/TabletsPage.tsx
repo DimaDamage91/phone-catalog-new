@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams, useSearchParams } from "react-router-dom";
 import styles from "../TabletsPage/TabletsPage.module.scss";
 import { Product } from "../shared/types/Product";
 import { Loader } from "../../components/Loader/Loader.js";
@@ -13,16 +13,22 @@ export const TabletsPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null)
   const step = 14;
 
-  const [visibleCount, setVisibleCount] = useState<number>(step);
-  const [sortBy, setSortBy] = useState<string>("newest");
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [visibleCount, setVisibleCount] = useState<number>(
+    Number(searchParams.get("perPage")) || step
+  );
+  const [sortBy, setSortBy] = useState<string>(
+    searchParams.get("sort") || "newest"
+  );
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(searchParams.get("page")) || 1
+  );
 
   const totalPages = Math.ceil(tablets.length / visibleCount);
 
   useEffect(() => {
     const fetchTablets = async () => {
       setIsLoading(true);
-
 
       try {
         const data = await fetchUrl(TABLETS_API);
@@ -45,6 +51,25 @@ export const TabletsPage: React.FC = () => {
 
     fetchTablets();
   }, []);
+
+  useEffect(() => {
+    const params: any = {};
+
+    if (visibleCount) {
+      params.perPage = visibleCount
+    }
+
+    if (sortBy) {
+      params.sort = sortBy
+    }
+
+    if (currentPage !== 1) {
+      params.page = currentPage
+    }
+
+    setSearchParams(params);
+
+  }, [currentPage, visibleCount, sortBy]);
 
   const sortedTablets = [...tablets].sort((a, b) => {
     if (sortBy === "newest") return a.year - b.year;
@@ -100,7 +125,10 @@ export const TabletsPage: React.FC = () => {
             <select
               className={styles["tablets-page__select__field-1"]}
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={(e) => {
+                setSortBy(e.target.value)
+                setCurrentPage(1)
+              }}
             >
             <option value="newest">Newest</option>
             <option value="cheapest">Cheap</option>
@@ -113,7 +141,10 @@ export const TabletsPage: React.FC = () => {
             <select
             className={styles["tablets-page__select__field-2"]}
             value={visibleCount}
-            onChange={(e) => setVisibleCount(Number(e.target.value))}
+            onChange={(e) => {
+              setVisibleCount(Number(e.target.value))
+              setCurrentPage(1)
+            }}
             >
             <option value={14}>14</option>
             <option value={18}>18</option>
