@@ -12,7 +12,7 @@ export const BackButton: React.FC = () => {
             onClick={() => navigate(-1)}
             >
             <img
-              src="./img/chevron-left.svg"
+              src="./img/Chevron(Arrow-Left).png"
               alt="logo"
               className={styles["back-button__img"]}
             />
