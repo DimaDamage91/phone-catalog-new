@@ -12,7 +12,7 @@ export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const step = 14;
+  const step = 16;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState<string>(
@@ -64,7 +64,7 @@ export const PhonesPage: React.FC = () => {
       params.perPage = visibleCount;
     }
 
-    if (currentPage !== 1) {
+    if (currentPage) {
       params.page = currentPage;
     }
 
@@ -144,9 +144,9 @@ export const PhonesPage: React.FC = () => {
                   setCurrentPage(1);
                 }}
               >
-              <option value={14}>14</option>
+              <option value={16}>16</option>
               <option value={18}>18</option>
-              <option value={22}>22</option>
+              <option value={20}>20</option>
               <option value={phones.length}>All</option>
               </select>
             </div>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartItem } from "../../modules/shared/types/CartItem";
 import styles from "../CartItem/CartItemCard.module.scss";
+import { Link } from "react-router-dom";
 
 interface CartItemProps {
   product: CartItem
@@ -42,10 +43,12 @@ export const CartItemCard: React.FC<CartItemProps> = ({ product }) => {
                 </svg>
               </button>
             </div>
+            <Link to={`/product/${product.product.productId}`} className={styles["cart-item-link"]}>
             <div className={styles["cart-item-card__first__photo-block"]}>
               <img className={styles["cart-item-card__first__photo-block__photo"]} src={productItem.image} alt={productItem.name}/>
             </div>
             <p className={styles["cart-item-card__first__name"]}>{productItem.name}</p>
+            </Link>
           </div>
           <div className={styles["cart-item-card__second"]}>
             <div className={styles["cart-item-card__second__quantity-block"]}>

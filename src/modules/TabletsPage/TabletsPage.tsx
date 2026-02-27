@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useParams, useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 import styles from "../TabletsPage/TabletsPage.module.scss";
 import { Product } from "../shared/types/Product";
 import { Loader } from "../../components/Loader/Loader.js";
@@ -11,7 +11,7 @@ export const TabletsPage: React.FC = () => {
   const [tablets, setTablets] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null)
-  const step = 14;
+  const step = 16;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState<number>(
@@ -63,7 +63,7 @@ export const TabletsPage: React.FC = () => {
       params.sort = sortBy
     }
 
-    if (currentPage !== 1) {
+    if (currentPage) {
       params.page = currentPage
     }
 
@@ -146,9 +146,9 @@ export const TabletsPage: React.FC = () => {
               setCurrentPage(1)
             }}
             >
-            <option value={14}>14</option>
+            <option value={16}>16</option>
             <option value={18}>18</option>
-            <option value={22}>22</option>
+            <option value={20}>20</option>
             <option value={tablets.length}>All</option>
             </select>
           </div>

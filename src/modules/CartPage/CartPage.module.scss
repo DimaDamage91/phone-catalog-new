@@ -1,15 +1,16 @@
 @import "../../utils/mixins";
 
 .cart-page {
-  margin: 0 16px;
+  margin-top: 24px;
+  padding: 0 16px;
   font-family: 'Mont';
 
   @include on-tablet {
-    margin: 0 24px;
+    padding: 0 24px;
   }
 
   @include on-desktop {
-    margin: 0 32px;
+    padding: 0 30px;
   }
 
   &__title {

@@ -12,7 +12,7 @@ export const Header = () => {
   const { favorites } = useContext(FavoritesContext);
   const { cartItems } = useContext(CartContext);
 
-  const cartCount = cartItems.length;
+  const cartCount = cartItems.reduce((sum, item) => sum += item.quantity, 0);
   const favoritesCount = favorites.length;
 
 

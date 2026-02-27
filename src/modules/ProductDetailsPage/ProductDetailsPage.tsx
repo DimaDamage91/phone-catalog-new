@@ -11,6 +11,7 @@ import { ProductsSlider } from "../../components/ProductsSlider";
 import { BackButton } from "../../components/BackButton";
 import { CartContext } from "../../context/CartContext";
 import { FavoritesContext } from "../../context/FavoritesContext";
+import { normalizeColor } from "../shared/normalizeColor/normalizeColor";
 
 
 export const ProductDetailsPage: React.FC = () => {
@@ -31,6 +32,24 @@ const { toggleCart, cartItems } = useContext(CartContext);
 const { toggleFavorite, favorites } = useContext(FavoritesContext);
 
 const apis = [PHONE_API, ACCESSORIES_API, TABLETS_API];
+
+const COLOR_MAP: Record<string, string> = {
+  graphite: '#2c2c2c',
+  gold: '#d4af37',
+  sierrablue: '#9bb5ce',
+  spaceblack: '#1c1c1e',
+  black: '#000000',
+  white: '#ffffff',
+  red: '#ff0000',
+  green: '#008000',
+  yellow: '#ffd700',
+  purple: '#800080',
+  spacegray: '#4a4a4a',
+  midnightgreen: '#004953',
+  rosegold: '#b76e79',
+  midnight: '#191970',
+  skyblue: '#87CEEB',
+};
 
 useEffect(() => {
   const fetchCurrentProduct = async () => {
@@ -112,8 +131,17 @@ const availableColors = Array.from(
 
 const availableCapacity = Array.from(
   new Set (variants.map((v) => v.capacity))
-)
+).sort((a, b) => {
+  const toGB = (val: string) => {
+    const num = parseFloat(val);
+    if (val.toUpperCase().includes("TB")) {
+      return num * 1024;
+    }
+    return num;
+  }
 
+  return toGB(a) - toGB(b);
+});
 
   return (
     <div className={styles["product-details-page"]}>
@@ -130,7 +158,9 @@ const availableCapacity = Array.from(
             <img src="./img/home.png" alt="logo" className={styles["product-details-page__logo"]}/>
           </NavLink>
           <img src="./img/r-shevron.png" alt="logo" className={styles["product-details-page__arrow"]}/>
-          <p className={styles["product-details-page__page"]}>{`${product.category[0].toUpperCase()}${product.category.slice(1)}`}</p>
+          <NavLink to={`/${product.category}`} className={styles["product-details-page__block"]}>
+            <p className={styles["product-details-page__page"]}>{`${product.category[0].toUpperCase()}${product.category.slice(1)}`}</p>
+          </NavLink>
         </div>
         <div>
           <BackButton />
@@ -157,14 +187,15 @@ const availableCapacity = Array.from(
             <div className={styles["product-details-page__content__first__second"]}>
               <div className={styles["product-details-page__content__colors"]}>
                 <div className={styles["product-details-page__content__colors__title"]}>
-                <p className={styles["product-details-page__content__colors__title__name"]}>Available colors</p>
-                <p className={styles["product-details-page__content__colors__title__name"]}>ID: {product.priceRegular}{product.priceDiscount}</p>
+                  <p className={styles["product-details-page__content__colors__title__name"]}>Available colors</p>
+                  <p className={styles["product-details-page__content__colors__title__name"]}>ID: {product.priceRegular}{product.priceDiscount}</p>
                 </div>
                 <div className={styles["product-details-page__content__colors__available"]}>
                   {availableColors.map((color) => {
                     const isActive = product.color === color;
 
                     const variantForColor = variants.find(v => v.color === color);
+                    const normalizedColor = normalizeColor(color);
 
                     return (
                       <button
@@ -179,7 +210,7 @@ const availableCapacity = Array.from(
                             : ''
                           }
                         `}
-                        style={{ backgroundColor: color }}
+                        style={{ backgroundColor: COLOR_MAP[normalizedColor] || color }}
                       />
                     );
                   })}

@@ -12,7 +12,7 @@ export const AccessoriesPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const step = 14;
+  const step = 16;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [visibleCount, setVisibleCount] = useState<number>(
@@ -145,9 +145,9 @@ export const AccessoriesPage: React.FC = () => {
                 setCurrentPage(1)
               }}
             >
-            <option value={14}>14</option>
+            <option value={16}>16</option>
             <option value={18}>18</option>
-            <option value={22}>22</option>
+            <option value={20}>20</option>
             <option value={accessories.length}>All</option>
             </select>
           </div>

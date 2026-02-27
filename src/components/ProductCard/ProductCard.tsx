@@ -9,12 +9,10 @@ import { CartContext } from '../../context/CartContext';
 
 interface ProductCardProps {
   product: Product;
-  width?: string;
   hideFullPrice?: boolean;
-  buttonWidth?: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212px", hideFullPrice, buttonWidth = "160px" }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, hideFullPrice }) => {
   const { cartItems, toggleCart } = useContext(CartContext);
 
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
@@ -36,7 +34,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212p
   })
 
   return (
-  <div className={styles.productCard} style={{ width }} >
+  <div className={styles.productCard}>
     <div className={styles["productCard__content"]}>
       <div className={styles["productCard__imgblock"]}>
        <Link to={`/product/${product.productId}`}>
@@ -94,7 +92,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, width = "212p
             styles["productCard__buttons--add"],
             isInCart && styles["productCard__buttons--add--selected"]
             )}
-            style={{ width: buttonWidth || '100px'}}
         >
           {isInCart ? 'Added' : 'Add to cart'}
         </button>
